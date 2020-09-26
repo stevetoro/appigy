@@ -9,10 +9,11 @@ import SwiftUI
 
 struct AppDetail: View {
     var app: AppigyApp
+    @State var image: Image = Image("app-store")
     
     var body: some View {
         VStack {
-            Image("app-store")
+            image
                 .resizable()
                 .frame(width: 100, height: 100)
             Text(app.name)
@@ -25,6 +26,20 @@ struct AppDetail: View {
             })
         }
         .frame(maxWidth: 400, maxHeight: .infinity)
+        .onAppear(perform: {
+            getAppImage(imageName: app.image_name, onComplete: {
+                data, error in
+                
+                guard error == nil else {
+                    print(error!)
+                    return
+                }
+                
+                if let data = data {
+                    self.image = data
+                }
+            })
+        })
     }
 }
 
