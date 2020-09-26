@@ -22,7 +22,7 @@ struct AppDetail: View {
             Text(app.description)
                 .padding()
             Button("Install", action: {
-                print("Installing \(app.name)")
+                install(formula: app.brew_formula)
             })
         }
         .frame(maxWidth: 400, maxHeight: .infinity)
