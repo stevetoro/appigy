@@ -11,8 +11,12 @@ struct AppList: View {
     var apps = appigyApps
     
     var body: some View {
-        List(apps, id: \.id) { app in
-            AppItem(app: app)
+        NavigationView {
+            List(apps, id: \.id) { app in
+                NavigationLink(destination: AppDetail(app: app)) {
+                    AppItem(app: app)
+                }
+            }
         }
     }
 }
