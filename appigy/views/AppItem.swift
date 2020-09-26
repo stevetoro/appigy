@@ -8,13 +8,27 @@
 import SwiftUI
 
 struct AppItem: View {
+    var app: AppigyApp
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            Image("app-store")
+                .resizable()
+                .frame(width: 40, height: 40)
+            VStack (alignment: .leading) {
+                Text(app.name)
+                Text(app.category)
+                    .font(.caption)
+                    .fontWeight(.light)
+            }
+            Spacer()
+        }
+        .frame(width: 150, height: 80)
     }
 }
 
 struct AppItem_Previews: PreviewProvider {
     static var previews: some View {
-        AppItem()
+        AppItem(app: appigyApps[0])
     }
 }
