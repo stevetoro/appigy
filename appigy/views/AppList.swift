@@ -8,13 +8,17 @@
 import SwiftUI
 
 struct AppList: View {
+    var apps = appigyApps
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        List(apps, id: \.id) { app in
+            AppItem(app: app)
+        }
     }
 }
 
 struct AppList_Previews: PreviewProvider {
     static var previews: some View {
-        AppList()
+        AppList(apps: appigyApps)
     }
 }
