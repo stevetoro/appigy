@@ -8,13 +8,28 @@
 import SwiftUI
 
 struct AppDetail: View {
+    var app: AppigyApp
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Image("app-store")
+                .resizable()
+                .frame(width: 100, height: 100)
+            Text(app.name)
+                .font(.headline)
+            Text(app.category)
+            Text(app.description)
+                .padding()
+            Button("Install", action: {
+                print("Installing \(app.name)")
+            })
+        }
+        .frame(maxWidth: 400, maxHeight: .infinity)
     }
 }
 
 struct AppDetail_Previews: PreviewProvider {
     static var previews: some View {
-        AppDetail()
+        AppDetail(app: appigyApps[0])
     }
 }
