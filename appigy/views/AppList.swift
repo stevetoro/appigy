@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AppList: View {
-    var apps = appigyApps
+    @State var apps = [AppigyApp]()
     
     var body: some View {
         NavigationView {
@@ -17,6 +17,20 @@ struct AppList: View {
                     AppItem(app: app)
                 }
             }
+        }
+        .onAppear{
+            getApps(onComplete: {
+                apps, error in
+                
+                guard error == nil else {
+                    print(error!)
+                    return
+                }
+                
+                if let apps = apps {
+                    self.apps = apps
+                }
+            })
         }
     }
 }
